@@ -55,7 +55,6 @@ with DAG(
             amount = round(random.uniform(10.0, 1000.0), 2)
             currency = random.choice(currencies)
 
-            # Додаємо новий рядок до DataFrame
             df = df._append({'order_id': order_id, 'customer_email': customer_email,
                             'order_date': order_date, 'amount': amount, 'currency': currency},
                            ignore_index=True)
@@ -67,7 +66,7 @@ with DAG(
         df: pd.DataFrame = kwargs['ti'].xcom_pull(task_ids='generate_orders_data')
 
         df = df[(df['order_date'] >= current_date - timedelta(days=7)) & (df['order_date'] <= current_date)]
-        print(df.count())
+        df = df.sample(n=5000)
 
         df.to_sql('orders', con=hook.get_sqlalchemy_engine(), if_exists='append', index=False)
 
@@ -105,7 +104,6 @@ with DAG(
         dag=dag,
         provide_context=True
     )
-
 
 
     create_table_task >> get_currency_task >> generate_table_info_task >> insert_orders_task

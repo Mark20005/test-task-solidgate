@@ -107,4 +107,5 @@ with DAG(
     )
 
 
+
     create_table_task >> get_currency_task >> generate_table_info_task >> insert_orders_task

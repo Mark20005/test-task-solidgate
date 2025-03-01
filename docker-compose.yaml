@@ -99,6 +99,23 @@ services:
       start_period: 5s
     restart: always
 
+  postgres-2:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: airflow1
+      POSTGRES_PASSWORD: airflow1
+      POSTGRES_DB: airflow1
+    volumes:
+      - postgres-2-db-volume:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "airflow1" ]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+    restart: always
+
   airflow-webserver:
     <<: *airflow-common
     command: webserver
@@ -229,3 +246,4 @@ services:
 
 volumes:
   postgres-db-volume:
+  postgres-2-db-volume:

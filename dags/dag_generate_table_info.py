@@ -73,7 +73,7 @@ with DAG(
         df = df.sample(n=5000)
 
         df.to_sql('orders', con=hook.get_sqlalchemy_engine(), if_exists='append', index=False)
-        logging.info(f"Filtered data successfully inserted to orders table in amount of {df.count(axis=0)} rows!")
+        logging.info(f"Filtered data successfully inserted to orders table in amount of {len(df)} rows!")
 
 
     create_table_task = PostgresOperator(

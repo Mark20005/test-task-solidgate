@@ -39,43 +39,62 @@ with DAG (
         response = requests.get(url=f"{URL_RATES}?app_id={API_KEY}", headers={'Accept': 'application/json'})
 
         if response.status_code == 200:
-            print(response.json())
+            logging.info("Currencies rates successfully retrieved")
+            return response.json()["rates"]
         else:
-            print(response.status_code, response.json())
+            logging.error("Something went wrong while retrieving currencies rates")
+            return None
 
-    def fetch_data():
-        hook = PostgresHook(postgres_conn_id='postgres_conn_1')
+    def process_data(**kwargs):
+        df = pd.DataFrame(columns=['order_id', 'customer_email', 'order_date', 'amount', 'currency_eur'])
+        hook_postgres_1 = PostgresHook(postgres_conn_id='postgres_conn_1')
+        hook_postgres_2 = PostgresHook(postgres_conn_id='postgres_conn_2')
 
-        records = hook.get_records("SELECT * FROM orders")
+        currency_rates: dict = kwargs['ti'].xcom_pull(task_ids='get_currencies_rates')
+
+        records = hook_postgres_1.get_records("SELECT * FROM orders")
+
+        for record in records:
+            if record[4] in currency_rates:
+                amount_rate = float(record[3]) / currency_rates[record[4]]
+                df = df._append({'order_id': record[0], 'customer_email': record[1],
+                                 'order_date': record[2], 'amount': amount_rate, 'currency_usd': "USD"},
+                                ignore_index=True)
+
+        df.to_sql('orders_usd', con=hook_postgres_2.get_sqlalchemy_engine(), if_exists='append', index=False)
+        logging.info(f"Converted data successfully inserted to orders_usd table!")
+
 
 
 
     create_orders_eur_table_task = PostgresOperator(
         task_id='create_orders_eur_table',
         postgres_conn_id='postgres_conn_2',
-        sql="""CREATE TABLE IF NOT EXISTS orders_eur (
+        sql="""CREATE TABLE IF NOT EXISTS orders_usd (
                     order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
                     customer_email VARCHAR(255) NOT NULL,
                     order_date TIMESTAMP NOT NULL DEFAULT NOW(),
                     amount NUMERIC(10,2) NOT NULL,
-                    currency_eur VARCHAR(10) NOT NULL
+                    currency_usd VARCHAR(10) NOT NULL
                 );""",
-        dag=dag
-    )
-
-    fetch_data_from_postgres_1_task = PythonOperator(
-        task_id='fetch_data_from_postgres_1',
-        python_callable=fetch_data,
         dag=dag
     )
 
     get_currencies_rates_task = PythonOperator(
         task_id='get_currencies_rates',
         python_callable=get_currencies_rates,
+        dag=dag,
+        do_xcom_push=True
+    )
+
+    process_data_from_postgres_1_task = PythonOperator(
+        task_id='fetch_data_from_postgres_1',
+        python_callable=process_data,
         dag=dag
     )
 
-    create_orders_eur_table_task >> get_currencies_rates_task >> fetch_data_from_postgres_1_task
+
+    create_orders_eur_table_task >> get_currencies_rates_task >> process_data_from_postgres_1_task
 
 
 

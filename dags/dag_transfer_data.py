@@ -7,7 +7,7 @@ import pandas as pd
 import logging
 from datetime import datetime, timedelta
 import os
-from airflow.decorators import task
+
 
 API_KEY = os.getenv("API_KEY")
 URL_RATES = "https://openexchangerates.org/api/latest.json"
@@ -46,7 +46,6 @@ with DAG (
             return None
 
     def process_data(**kwargs):
-        df = pd.DataFrame(columns=['order_id', 'customer_email', 'order_date', 'amount', 'currency_usd'])
         hook_postgres_1 = PostgresHook(postgres_conn_id='postgres_conn_1')
         hook_postgres_2 = PostgresHook(postgres_conn_id='postgres_conn_2')
 
@@ -54,12 +53,14 @@ with DAG (
 
         records = hook_postgres_1.get_records("SELECT * FROM orders")
 
+        data = []
         for record in records:
             if record[4] in currency_rates:
                 amount_rate = float(record[3]) / currency_rates[record[4]]
-                df = df._append({'order_id': record[0], 'customer_email': record[1],
-                                 'order_date': record[2], 'amount': amount_rate, 'currency_usd': "USD"},
-                                ignore_index=True)
+                data.append(
+                    {'order_id': record[0], 'customer_email': record[1], 'order_date': record[2], 'amount': amount_rate,
+                     'currency_usd': "USD"})
+        df = pd.DataFrame(data)
 
         df.to_sql('orders_usd', con=hook_postgres_2.get_sqlalchemy_engine(), if_exists='append', index=False)
         logging.info(f"Converted data successfully inserted to orders_usd table!")

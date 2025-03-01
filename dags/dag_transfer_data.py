@@ -33,6 +33,7 @@ with DAG (
     start_date=datetime.now(),
     description="Transfer data to Postgres-2 database"
 ) as dag:
+
     dag.doc_md = """This DAG performs transferring data from Postgres-1 to Postgres-2 database"""
 
     def get_currencies_rates():
@@ -62,7 +63,7 @@ with DAG (
                      'currency_usd': "USD"})
         df = pd.DataFrame(data)
 
-        df.to_sql('orders_usd', con=hook_postgres_2.get_sqlalchemy_engine(), if_exists='append', index=False)
+        df.to_sql('orders_usd', con=hook_postgres_2.get_sqlalchemy_engine(), if_exists='replace', index=False)
         logging.info(f"Converted data successfully inserted to orders_usd table!")
 
 

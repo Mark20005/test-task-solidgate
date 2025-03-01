@@ -57,7 +57,6 @@ with DAG(
             amount = round(random.uniform(10.0, 1000.0), 2)
             currency = random.choice(currencies)
 
-            # Додаємо дані в список
             data.append({'order_id': order_id, 'customer_email': customer_email,
                          'order_date': order_date, 'amount': amount, 'currency': currency})
 

@@ -12,5 +12,4 @@ pycache/
 
 !docker-compose.yaml
 !Dockerfile
-dags/*
 !dags/

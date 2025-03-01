@@ -47,11 +47,9 @@ with DAG(
 
     def generate_table_info(**kwargs) -> pd.DataFrame:
         currencies = kwargs['ti'].xcom_pull(task_ids='get_api_currency')
-
         two_weeks_ago = current_date - timedelta(weeks=3)
-        df = pd.DataFrame(columns=['order_id', 'customer_email', 'order_date', 'amount', 'currency'])
 
-        #generete sample data in amount of 20k rows with 0-21d date range
+        data = []
         for _ in range(20000):
             order_id = str(uuid.uuid4())
             customer_email = f'user{random.randint(1, 10000)}@example.com'
@@ -59,9 +57,12 @@ with DAG(
             amount = round(random.uniform(10.0, 1000.0), 2)
             currency = random.choice(currencies)
 
-            df = df._append({'order_id': order_id, 'customer_email': customer_email,
-                            'order_date': order_date, 'amount': amount, 'currency': currency},
-                           ignore_index=True)
+            # Додаємо дані в список
+            data.append({'order_id': order_id, 'customer_email': customer_email,
+                         'order_date': order_date, 'amount': amount, 'currency': currency})
+
+        df = pd.DataFrame(data)
+
         logging.info("Sample data successfully generated!")
         return df
 

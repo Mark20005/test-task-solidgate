@@ -7,7 +7,7 @@ from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.providers.postgres.operators.postgres import PostgresOperator
 import requests
 import pandas as pd
-
+import logging
 
 EXCHANGE_URL = "https://openexchangerates.org/api/currencies.json"
 current_date = datetime.now()
@@ -37,8 +37,10 @@ with DAG(
         response = requests.get(url=EXCHANGE_URL)
 
         if response.status_code == 200:
+            logging.info("Currency list successfully fetched!")
             return list(response.json().keys())
         else:
+            logging.error("Failed to fetch currency list!")
             return None
 
 
@@ -48,6 +50,7 @@ with DAG(
         two_weeks_ago = current_date - timedelta(weeks=3)
         df = pd.DataFrame(columns=['order_id', 'customer_email', 'order_date', 'amount', 'currency'])
 
+        #generete sample data in amount of 20k rows with 0-21d date range
         for _ in range(20000):
             order_id = str(uuid.uuid4())
             customer_email = f'user{random.randint(1, 10000)}@example.com'
@@ -58,6 +61,7 @@ with DAG(
             df = df._append({'order_id': order_id, 'customer_email': customer_email,
                             'order_date': order_date, 'amount': amount, 'currency': currency},
                            ignore_index=True)
+        logging.info("Sample data successfully generated!")
         return df
 
 
@@ -69,6 +73,7 @@ with DAG(
         df = df.sample(n=5000)
 
         df.to_sql('orders', con=hook.get_sqlalchemy_engine(), if_exists='append', index=False)
+        logging.info(f"Filtered data successfully inserted to orders table in amount of {df.count(axis=0)} rows!")
 
 
     create_table_task = PostgresOperator(

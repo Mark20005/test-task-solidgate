@@ -8,10 +8,10 @@ import logging
 from datetime import datetime, timedelta
 import os
 from dotenv import load_dotenv
+from pathlib import Path
 from airflow.decorators import task
 
-load_dotenv()
-API_KEY = os.getenv('API_KEY')
+
 URL_RATES = "https://openexchangerates.org/api/latest.json?"
 
 
@@ -38,6 +38,7 @@ with DAG (
     dag.doc_md = """This DAG performs transferring data from Postgres-1 to Postgres-2 database"""
 
     def get_currencies_rates():
+        print(API_KEY)
         response = requests.get(url=f"{URL_RATES}?app_id={API_KEY}", headers={'Accept': 'application/json'})
 
         if response.status_code == 200:

@@ -24,14 +24,14 @@ default_args = {
 }
 
 with DAG(
-        dag_id='dag_postgres_1',
+        dag_id='dag_generate_table_info',
         default_args=default_args,
-        description='Create and populate orders table in PostgreSQL',
+        description='Create and populate orders table in Postgres-1',
         schedule_interval="*/50 * * * *",
         catchup=False,
-        start_date=datetime(2025, 1, 1),
+        start_date=datetime.now(),
 ) as dag:
-    dag.doc_md = """ This DAG performs creating and generating values for orders table in Postgres_1 DB"""
+    dag.doc_md = """ This DAG performs creating and generating data for orders table in Postgres-1 DB"""
 
     def get_currency_list():
         response = requests.get(url=EXCHANGE_URL)
@@ -76,8 +76,8 @@ with DAG(
         logging.info(f"Filtered data successfully inserted to orders table in amount of {len(df)} rows!")
 
 
-    create_table_task = PostgresOperator(
-        task_id='create_table_orders',
+    create_order_table_task = PostgresOperator(
+        task_id='create_order_table_orders',
         postgres_conn_id='postgres_conn_1',
         sql="""CREATE TABLE IF NOT EXISTS orders (
                 order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -85,7 +85,8 @@ with DAG(
                 order_date TIMESTAMP NOT NULL DEFAULT NOW(),
                 amount NUMERIC(10,2) NOT NULL,
                 currency VARCHAR(10) NOT NULL
-            );"""
+            );""",
+        dag=dag
     )
 
     get_currency_task = PythonOperator(
@@ -110,5 +111,4 @@ with DAG(
         provide_context=True
     )
 
-
-    create_table_task >> get_currency_task >> generate_table_info_task >> insert_orders_task
+    create_order_table_task >> get_currency_task >> generate_table_info_task >> insert_orders_task

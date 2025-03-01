@@ -1,0 +1,342 @@
+[2025-03-01T02:00:01.512+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-01T02:00:01.526+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [queued]>
+[2025-03-01T02:00:01.534+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [queued]>
+[2025-03-01T02:00:01.534+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-01T02:00:01.549+0000] {taskinstance.py:2890} INFO - Executing <Task(PostgresOperator): create_table_orders> on 2025-03-01 01:50:00+00:00
+[2025-03-01T02:00:01.561+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=52901) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-03-01T02:00:01.561+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_postgres_1', 'create_table_orders', 'scheduled__2025-03-01T01:50:00+00:00', '--job-id', '64', '--raw', '--subdir', 'DAGS_FOLDER/dag_generate_table_info.py', '--cfg-path', '/tmp/tmpcitcnfxy']
+[2025-03-01T02:00:01.562+0000] {standard_task_runner.py:72} INFO - Started process 52902 to run task
+[2025-03-01T02:00:01.563+0000] {standard_task_runner.py:105} INFO - Job 64: Subtask create_table_orders
+[2025-03-01T02:00:01.606+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [running]> on host e6b43e607126
+[2025-03-01T02:00:01.702+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='kucikm23@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_postgres_1' AIRFLOW_CTX_TASK_ID='create_table_orders' AIRFLOW_CTX_EXECUTION_DATE='2025-03-01T01:50:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-01T01:50:00+00:00'
+[2025-03-01T02:00:01.703+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-03-01T02:00:01.704+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-03-01T02:00:01.704+0000] {logging_mixin.py:190} INFO - Current task name:create_table_orders state:running start_date:2025-03-01 02:00:01.527309+00:00
+[2025-03-01T02:00:01.705+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 and current dag run status:running
+[2025-03-01T02:00:01.705+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-01T02:00:01.706+0000] {sql.py:295} INFO - Executing: CREATE TABLE IF NOT EXISTS orders (
+                order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                customer_email VARCHAR(255) NOT NULL,
+                order_date TIMESTAMP NOT NULL DEFAULT NOW(),
+                amount NUMERIC(10,2) NOT NULL,
+                currency VARCHAR(10) NOT NULL
+            );
+[2025-03-01T02:00:01.713+0000] {base.py:84} INFO - Retrieving connection 'postgres_conn'
+[2025-03-01T02:00:01.720+0000] {base.py:84} INFO - Retrieving connection 'postgres_conn'
+[2025-03-01T02:00:01.728+0000] {sql.py:511} INFO - Running statement: CREATE TABLE IF NOT EXISTS orders (
+                order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                customer_email VARCHAR(255) NOT NULL,
+                order_date TIMESTAMP NOT NULL DEFAULT NOW(),
+                amount NUMERIC(10,2) NOT NULL,
+                currency VARCHAR(10) NOT NULL
+            );, parameters: None
+[2025-03-01T02:00:01.732+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:470 DeprecationWarning: Import of fetch_all_handler from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:00:01.734+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:471 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:00:01.736+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:486 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:00:01.737+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/operators/sql.py:311 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:00:01.746+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-01T02:00:01.746+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=dag_postgres_1, task_id=create_table_orders, run_id=scheduled__2025-03-01T01:50:00+00:00, execution_date=20250301T015000, start_date=20250301T020001, end_date=20250301T020001
+[2025-03-01T02:00:01.771+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-03-01T02:00:01.772+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-03-01T02:00:01.772+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 queued_at:2025-03-01 02:00:00.529895+00:00
+[2025-03-01T02:00:01.772+0000] {logging_mixin.py:190} INFO - Task hostname:e6b43e607126 operator:PostgresOperator
+[2025-03-01T02:00:01.817+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-01T02:00:01.844+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-01T02:00:01.847+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-03-01T02:03:42.052+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-01T02:03:42.072+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [queued]>
+[2025-03-01T02:03:42.083+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [queued]>
+[2025-03-01T02:03:42.084+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-01T02:03:42.106+0000] {taskinstance.py:2890} INFO - Executing <Task(PostgresOperator): create_table_orders> on 2025-03-01 01:50:00+00:00
+[2025-03-01T02:03:42.118+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=55027) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-03-01T02:03:42.118+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_postgres_1', 'create_table_orders', 'scheduled__2025-03-01T01:50:00+00:00', '--job-id', '70', '--raw', '--subdir', 'DAGS_FOLDER/dag_generate_table_info.py', '--cfg-path', '/tmp/tmpqb7i_ea0']
+[2025-03-01T02:03:42.119+0000] {standard_task_runner.py:72} INFO - Started process 55042 to run task
+[2025-03-01T02:03:42.119+0000] {standard_task_runner.py:105} INFO - Job 70: Subtask create_table_orders
+[2025-03-01T02:03:42.545+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [running]> on host e6b43e607126
+[2025-03-01T02:03:42.743+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='kucikm23@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_postgres_1' AIRFLOW_CTX_TASK_ID='create_table_orders' AIRFLOW_CTX_EXECUTION_DATE='2025-03-01T01:50:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-01T01:50:00+00:00'
+[2025-03-01T02:03:42.744+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-03-01T02:03:42.745+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-03-01T02:03:42.745+0000] {logging_mixin.py:190} INFO - Current task name:create_table_orders state:running start_date:2025-03-01 02:03:42.072830+00:00
+[2025-03-01T02:03:42.746+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 and current dag run status:running
+[2025-03-01T02:03:42.746+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-01T02:03:42.747+0000] {sql.py:295} INFO - Executing: CREATE TABLE IF NOT EXISTS orders (
+                order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                customer_email VARCHAR(255) NOT NULL,
+                order_date TIMESTAMP NOT NULL DEFAULT NOW(),
+                amount NUMERIC(10,2) NOT NULL,
+                currency VARCHAR(10) NOT NULL
+            );
+[2025-03-01T02:03:42.757+0000] {base.py:84} INFO - Retrieving connection 'postgres_conn'
+[2025-03-01T02:03:42.765+0000] {base.py:84} INFO - Retrieving connection 'postgres_conn'
+[2025-03-01T02:03:42.774+0000] {sql.py:511} INFO - Running statement: CREATE TABLE IF NOT EXISTS orders (
+                order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                customer_email VARCHAR(255) NOT NULL,
+                order_date TIMESTAMP NOT NULL DEFAULT NOW(),
+                amount NUMERIC(10,2) NOT NULL,
+                currency VARCHAR(10) NOT NULL
+            );, parameters: None
+[2025-03-01T02:03:42.778+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:470 DeprecationWarning: Import of fetch_all_handler from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:03:42.780+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:471 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:03:42.783+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:486 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:03:42.785+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/operators/sql.py:311 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:03:42.795+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-01T02:03:42.796+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=dag_postgres_1, task_id=create_table_orders, run_id=scheduled__2025-03-01T01:50:00+00:00, execution_date=20250301T015000, start_date=20250301T020342, end_date=20250301T020342
+[2025-03-01T02:03:42.831+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-03-01T02:03:42.832+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-03-01T02:03:42.832+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 queued_at:2025-03-01 02:03:40.548117+00:00
+[2025-03-01T02:03:42.833+0000] {logging_mixin.py:190} INFO - Task hostname:e6b43e607126 operator:PostgresOperator
+[2025-03-01T02:03:42.875+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-01T02:03:42.906+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-01T02:03:42.913+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-03-01T02:04:12.041+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-01T02:04:12.055+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [queued]>
+[2025-03-01T02:04:12.062+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [queued]>
+[2025-03-01T02:04:12.063+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-01T02:04:12.081+0000] {taskinstance.py:2890} INFO - Executing <Task(PostgresOperator): create_table_orders> on 2025-03-01 01:50:00+00:00
+[2025-03-01T02:04:12.091+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=55340) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-03-01T02:04:12.091+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_postgres_1', 'create_table_orders', 'scheduled__2025-03-01T01:50:00+00:00', '--job-id', '77', '--raw', '--subdir', 'DAGS_FOLDER/dag_generate_table_info.py', '--cfg-path', '/tmp/tmp9gn7s1y1']
+[2025-03-01T02:04:12.092+0000] {standard_task_runner.py:72} INFO - Started process 55344 to run task
+[2025-03-01T02:04:12.092+0000] {standard_task_runner.py:105} INFO - Job 77: Subtask create_table_orders
+[2025-03-01T02:04:12.136+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [running]> on host e6b43e607126
+[2025-03-01T02:04:12.221+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='kucikm23@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_postgres_1' AIRFLOW_CTX_TASK_ID='create_table_orders' AIRFLOW_CTX_EXECUTION_DATE='2025-03-01T01:50:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-01T01:50:00+00:00'
+[2025-03-01T02:04:12.222+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-03-01T02:04:12.223+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-03-01T02:04:12.223+0000] {logging_mixin.py:190} INFO - Current task name:create_table_orders state:running start_date:2025-03-01 02:04:12.056269+00:00
+[2025-03-01T02:04:12.223+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 and current dag run status:running
+[2025-03-01T02:04:12.224+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-01T02:04:12.224+0000] {sql.py:295} INFO - Executing: CREATE TABLE IF NOT EXISTS orders (
+                order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                customer_email VARCHAR(255) NOT NULL,
+                order_date TIMESTAMP NOT NULL DEFAULT NOW(),
+                amount NUMERIC(10,2) NOT NULL,
+                currency VARCHAR(10) NOT NULL
+            );
+[2025-03-01T02:04:12.231+0000] {base.py:84} INFO - Retrieving connection 'postgres_conn'
+[2025-03-01T02:04:12.239+0000] {base.py:84} INFO - Retrieving connection 'postgres_conn'
+[2025-03-01T02:04:12.246+0000] {sql.py:511} INFO - Running statement: CREATE TABLE IF NOT EXISTS orders (
+                order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                customer_email VARCHAR(255) NOT NULL,
+                order_date TIMESTAMP NOT NULL DEFAULT NOW(),
+                amount NUMERIC(10,2) NOT NULL,
+                currency VARCHAR(10) NOT NULL
+            );, parameters: None
+[2025-03-01T02:04:12.250+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:470 DeprecationWarning: Import of fetch_all_handler from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:04:12.252+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:471 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:04:12.255+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:486 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:04:12.256+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/operators/sql.py:311 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:04:12.264+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-01T02:04:12.265+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=dag_postgres_1, task_id=create_table_orders, run_id=scheduled__2025-03-01T01:50:00+00:00, execution_date=20250301T015000, start_date=20250301T020412, end_date=20250301T020412
+[2025-03-01T02:04:12.293+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-03-01T02:04:12.293+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-03-01T02:04:12.294+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 queued_at:2025-03-01 02:04:11.017280+00:00
+[2025-03-01T02:04:12.294+0000] {logging_mixin.py:190} INFO - Task hostname:e6b43e607126 operator:PostgresOperator
+[2025-03-01T02:04:12.306+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-01T02:04:12.315+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-03-01T02:07:15.383+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-01T02:07:15.396+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [queued]>
+[2025-03-01T02:07:15.402+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [queued]>
+[2025-03-01T02:07:15.402+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-01T02:07:15.416+0000] {taskinstance.py:2890} INFO - Executing <Task(PostgresOperator): create_table_orders> on 2025-03-01 01:50:00+00:00
+[2025-03-01T02:07:15.426+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=57128) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-03-01T02:07:15.426+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_postgres_1', 'create_table_orders', 'scheduled__2025-03-01T01:50:00+00:00', '--job-id', '80', '--raw', '--subdir', 'DAGS_FOLDER/dag_generate_table_info.py', '--cfg-path', '/tmp/tmpcptl4_qz']
+[2025-03-01T02:07:15.427+0000] {standard_task_runner.py:72} INFO - Started process 57130 to run task
+[2025-03-01T02:07:15.427+0000] {standard_task_runner.py:105} INFO - Job 80: Subtask create_table_orders
+[2025-03-01T02:07:15.480+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [running]> on host e6b43e607126
+[2025-03-01T02:07:15.598+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='kucikm23@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_postgres_1' AIRFLOW_CTX_TASK_ID='create_table_orders' AIRFLOW_CTX_EXECUTION_DATE='2025-03-01T01:50:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-01T01:50:00+00:00'
+[2025-03-01T02:07:15.600+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-03-01T02:07:15.600+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-03-01T02:07:15.601+0000] {logging_mixin.py:190} INFO - Current task name:create_table_orders state:running start_date:2025-03-01 02:07:15.396658+00:00
+[2025-03-01T02:07:15.601+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 and current dag run status:running
+[2025-03-01T02:07:15.601+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-01T02:07:15.602+0000] {sql.py:295} INFO - Executing: CREATE TABLE IF NOT EXISTS orders (
+                order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                customer_email VARCHAR(255) NOT NULL,
+                order_date TIMESTAMP NOT NULL DEFAULT NOW(),
+                amount NUMERIC(10,2) NOT NULL,
+                currency VARCHAR(10) NOT NULL
+            );
+[2025-03-01T02:07:15.609+0000] {base.py:84} INFO - Retrieving connection 'postgres_conn'
+[2025-03-01T02:07:15.616+0000] {base.py:84} INFO - Retrieving connection 'postgres_conn'
+[2025-03-01T02:07:15.625+0000] {sql.py:511} INFO - Running statement: CREATE TABLE IF NOT EXISTS orders (
+                order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                customer_email VARCHAR(255) NOT NULL,
+                order_date TIMESTAMP NOT NULL DEFAULT NOW(),
+                amount NUMERIC(10,2) NOT NULL,
+                currency VARCHAR(10) NOT NULL
+            );, parameters: None
+[2025-03-01T02:07:15.629+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:470 DeprecationWarning: Import of fetch_all_handler from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:07:15.631+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:471 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:07:15.634+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:486 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:07:15.635+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/operators/sql.py:311 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:07:15.646+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-01T02:07:15.647+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=dag_postgres_1, task_id=create_table_orders, run_id=scheduled__2025-03-01T01:50:00+00:00, execution_date=20250301T015000, start_date=20250301T020715, end_date=20250301T020715
+[2025-03-01T02:07:15.696+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-03-01T02:07:15.703+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-03-01T02:07:15.704+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 queued_at:2025-03-01 02:07:14.141760+00:00
+[2025-03-01T02:07:15.704+0000] {logging_mixin.py:190} INFO - Task hostname:e6b43e607126 operator:PostgresOperator
+[2025-03-01T02:07:15.721+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-01T02:07:15.750+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-01T02:07:15.759+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-03-01T02:09:48.656+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-01T02:09:48.673+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [queued]>
+[2025-03-01T02:09:48.682+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [queued]>
+[2025-03-01T02:09:48.683+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-01T02:09:48.699+0000] {taskinstance.py:2890} INFO - Executing <Task(PostgresOperator): create_table_orders> on 2025-03-01 01:50:00+00:00
+[2025-03-01T02:09:48.711+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=58638) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-03-01T02:09:48.711+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_postgres_1', 'create_table_orders', 'scheduled__2025-03-01T01:50:00+00:00', '--job-id', '88', '--raw', '--subdir', 'DAGS_FOLDER/dag_generate_table_info.py', '--cfg-path', '/tmp/tmpdfq8qh_u']
+[2025-03-01T02:09:48.712+0000] {standard_task_runner.py:72} INFO - Started process 58659 to run task
+[2025-03-01T02:09:48.712+0000] {standard_task_runner.py:105} INFO - Job 88: Subtask create_table_orders
+[2025-03-01T02:09:48.760+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [running]> on host e6b43e607126
+[2025-03-01T02:09:48.852+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='kucikm23@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_postgres_1' AIRFLOW_CTX_TASK_ID='create_table_orders' AIRFLOW_CTX_EXECUTION_DATE='2025-03-01T01:50:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-01T01:50:00+00:00'
+[2025-03-01T02:09:48.854+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-03-01T02:09:48.855+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-03-01T02:09:48.855+0000] {logging_mixin.py:190} INFO - Current task name:create_table_orders state:running start_date:2025-03-01 02:09:48.674700+00:00
+[2025-03-01T02:09:48.855+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 and current dag run status:running
+[2025-03-01T02:09:48.856+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-01T02:09:48.856+0000] {sql.py:295} INFO - Executing: CREATE TABLE IF NOT EXISTS orders (
+                order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                customer_email VARCHAR(255) NOT NULL,
+                order_date TIMESTAMP NOT NULL DEFAULT NOW(),
+                amount NUMERIC(10,2) NOT NULL,
+                currency VARCHAR(10) NOT NULL
+            );
+[2025-03-01T02:09:48.865+0000] {base.py:84} INFO - Retrieving connection 'postgres_conn'
+[2025-03-01T02:09:48.873+0000] {base.py:84} INFO - Retrieving connection 'postgres_conn'
+[2025-03-01T02:09:48.882+0000] {sql.py:511} INFO - Running statement: CREATE TABLE IF NOT EXISTS orders (
+                order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                customer_email VARCHAR(255) NOT NULL,
+                order_date TIMESTAMP NOT NULL DEFAULT NOW(),
+                amount NUMERIC(10,2) NOT NULL,
+                currency VARCHAR(10) NOT NULL
+            );, parameters: None
+[2025-03-01T02:09:48.887+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:470 DeprecationWarning: Import of fetch_all_handler from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:09:48.888+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:471 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:09:48.891+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:486 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:09:48.893+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/operators/sql.py:311 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:09:48.902+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-01T02:09:48.903+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=dag_postgres_1, task_id=create_table_orders, run_id=scheduled__2025-03-01T01:50:00+00:00, execution_date=20250301T015000, start_date=20250301T020948, end_date=20250301T020948
+[2025-03-01T02:09:48.939+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-03-01T02:09:48.940+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-03-01T02:09:48.940+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 queued_at:2025-03-01 02:09:47.342430+00:00
+[2025-03-01T02:09:48.940+0000] {logging_mixin.py:190} INFO - Task hostname:e6b43e607126 operator:PostgresOperator
+[2025-03-01T02:09:48.967+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-01T02:09:48.998+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-01T02:09:49.005+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-03-01T02:11:23.309+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-01T02:11:23.324+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [queued]>
+[2025-03-01T02:11:23.332+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [queued]>
+[2025-03-01T02:11:23.333+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-01T02:11:23.350+0000] {taskinstance.py:2890} INFO - Executing <Task(PostgresOperator): create_table_orders> on 2025-03-01 01:50:00+00:00
+[2025-03-01T02:11:23.361+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=59573) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-03-01T02:11:23.361+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_postgres_1', 'create_table_orders', 'scheduled__2025-03-01T01:50:00+00:00', '--job-id', '90', '--raw', '--subdir', 'DAGS_FOLDER/dag_generate_table_info.py', '--cfg-path', '/tmp/tmpun4i38wo']
+[2025-03-01T02:11:23.362+0000] {standard_task_runner.py:72} INFO - Started process 59584 to run task
+[2025-03-01T02:11:23.362+0000] {standard_task_runner.py:105} INFO - Job 90: Subtask create_table_orders
+[2025-03-01T02:11:23.410+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [running]> on host e6b43e607126
+[2025-03-01T02:11:23.508+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='kucikm23@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_postgres_1' AIRFLOW_CTX_TASK_ID='create_table_orders' AIRFLOW_CTX_EXECUTION_DATE='2025-03-01T01:50:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-01T01:50:00+00:00'
+[2025-03-01T02:11:23.510+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-03-01T02:11:23.511+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-03-01T02:11:23.511+0000] {logging_mixin.py:190} INFO - Current task name:create_table_orders state:running start_date:2025-03-01 02:11:23.325497+00:00
+[2025-03-01T02:11:23.512+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 and current dag run status:running
+[2025-03-01T02:11:23.512+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-01T02:11:23.512+0000] {sql.py:295} INFO - Executing: CREATE TABLE IF NOT EXISTS orders (
+                order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                customer_email VARCHAR(255) NOT NULL,
+                order_date TIMESTAMP NOT NULL DEFAULT NOW(),
+                amount NUMERIC(10,2) NOT NULL,
+                currency VARCHAR(10) NOT NULL
+            );
+[2025-03-01T02:11:23.521+0000] {base.py:84} INFO - Retrieving connection 'postgres_conn'
+[2025-03-01T02:11:23.529+0000] {base.py:84} INFO - Retrieving connection 'postgres_conn'
+[2025-03-01T02:11:23.538+0000] {sql.py:511} INFO - Running statement: CREATE TABLE IF NOT EXISTS orders (
+                order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                customer_email VARCHAR(255) NOT NULL,
+                order_date TIMESTAMP NOT NULL DEFAULT NOW(),
+                amount NUMERIC(10,2) NOT NULL,
+                currency VARCHAR(10) NOT NULL
+            );, parameters: None
+[2025-03-01T02:11:23.542+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:470 DeprecationWarning: Import of fetch_all_handler from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:11:23.544+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:471 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:11:23.546+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:486 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:11:23.547+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/operators/sql.py:311 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:11:23.556+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-01T02:11:23.557+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=dag_postgres_1, task_id=create_table_orders, run_id=scheduled__2025-03-01T01:50:00+00:00, execution_date=20250301T015000, start_date=20250301T021123, end_date=20250301T021123
+[2025-03-01T02:11:23.591+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-03-01T02:11:23.592+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-03-01T02:11:23.593+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 queued_at:2025-03-01 02:11:22.172302+00:00
+[2025-03-01T02:11:23.593+0000] {logging_mixin.py:190} INFO - Task hostname:e6b43e607126 operator:PostgresOperator
+[2025-03-01T02:11:23.617+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-01T02:11:23.651+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-01T02:11:23.657+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-03-01T02:11:53.427+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-01T02:11:53.440+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [queued]>
+[2025-03-01T02:11:53.447+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [queued]>
+[2025-03-01T02:11:53.448+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-01T02:11:53.461+0000] {taskinstance.py:2890} INFO - Executing <Task(PostgresOperator): create_table_orders> on 2025-03-01 01:50:00+00:00
+[2025-03-01T02:11:53.470+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=59897) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-03-01T02:11:53.470+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_postgres_1', 'create_table_orders', 'scheduled__2025-03-01T01:50:00+00:00', '--job-id', '97', '--raw', '--subdir', 'DAGS_FOLDER/dag_generate_table_info.py', '--cfg-path', '/tmp/tmpta877580']
+[2025-03-01T02:11:53.471+0000] {standard_task_runner.py:72} INFO - Started process 59908 to run task
+[2025-03-01T02:11:53.472+0000] {standard_task_runner.py:105} INFO - Job 97: Subtask create_table_orders
+[2025-03-01T02:11:53.510+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_postgres_1.create_table_orders scheduled__2025-03-01T01:50:00+00:00 [running]> on host e6b43e607126
+[2025-03-01T02:11:53.584+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='kucikm23@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_postgres_1' AIRFLOW_CTX_TASK_ID='create_table_orders' AIRFLOW_CTX_EXECUTION_DATE='2025-03-01T01:50:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-01T01:50:00+00:00'
+[2025-03-01T02:11:53.585+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-03-01T02:11:53.585+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-03-01T02:11:53.586+0000] {logging_mixin.py:190} INFO - Current task name:create_table_orders state:running start_date:2025-03-01 02:11:53.441463+00:00
+[2025-03-01T02:11:53.586+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 and current dag run status:running
+[2025-03-01T02:11:53.586+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-01T02:11:53.587+0000] {sql.py:295} INFO - Executing: CREATE TABLE IF NOT EXISTS orders (
+                order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                customer_email VARCHAR(255) NOT NULL,
+                order_date TIMESTAMP NOT NULL DEFAULT NOW(),
+                amount NUMERIC(10,2) NOT NULL,
+                currency VARCHAR(10) NOT NULL
+            );
+[2025-03-01T02:11:53.593+0000] {base.py:84} INFO - Retrieving connection 'postgres_conn'
+[2025-03-01T02:11:53.600+0000] {base.py:84} INFO - Retrieving connection 'postgres_conn'
+[2025-03-01T02:11:53.607+0000] {sql.py:511} INFO - Running statement: CREATE TABLE IF NOT EXISTS orders (
+                order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                customer_email VARCHAR(255) NOT NULL,
+                order_date TIMESTAMP NOT NULL DEFAULT NOW(),
+                amount NUMERIC(10,2) NOT NULL,
+                currency VARCHAR(10) NOT NULL
+            );, parameters: None
+[2025-03-01T02:11:53.610+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:470 DeprecationWarning: Import of fetch_all_handler from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:11:53.612+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:471 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:11:53.614+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/hooks/sql.py:486 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:11:53.615+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/providers/common/sql/operators/sql.py:311 DeprecationWarning: Import of return_single_query_results from the '***.providers.common.sql.hooks' module is deprecated and will
+be removed in the future. Please import it from '***.providers.common.sql.hooks.handlers'.
+[2025-03-01T02:11:53.623+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-01T02:11:53.623+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=dag_postgres_1, task_id=create_table_orders, run_id=scheduled__2025-03-01T01:50:00+00:00, execution_date=20250301T015000, start_date=20250301T021153, end_date=20250301T021153
+[2025-03-01T02:11:53.647+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-03-01T02:11:53.648+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-03-01T02:11:53.648+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 queued_at:2025-03-01 02:11:52.484916+00:00
+[2025-03-01T02:11:53.649+0000] {logging_mixin.py:190} INFO - Task hostname:e6b43e607126 operator:PostgresOperator
+[2025-03-01T02:11:53.686+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-01T02:11:53.710+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-01T02:11:53.714+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

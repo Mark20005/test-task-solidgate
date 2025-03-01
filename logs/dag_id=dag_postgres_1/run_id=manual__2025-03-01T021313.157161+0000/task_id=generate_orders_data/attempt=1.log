@@ -1,0 +1,33 @@
+[2025-03-01T02:13:19.138+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-01T02:13:19.156+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_postgres_1.generate_orders_data manual__2025-03-01T02:13:13.157161+00:00 [queued]>
+[2025-03-01T02:13:19.164+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_postgres_1.generate_orders_data manual__2025-03-01T02:13:13.157161+00:00 [queued]>
+[2025-03-01T02:13:19.165+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-01T02:13:19.179+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): generate_orders_data> on 2025-03-01 02:13:13.157161+00:00
+[2025-03-01T02:13:19.189+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=60775) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-03-01T02:13:19.189+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_postgres_1', 'generate_orders_data', 'manual__2025-03-01T02:13:13.157161+00:00', '--job-id', '103', '--raw', '--subdir', 'DAGS_FOLDER/dag_generate_table_info.py', '--cfg-path', '/tmp/tmpfxm55rmy']
+[2025-03-01T02:13:19.190+0000] {standard_task_runner.py:72} INFO - Started process 60781 to run task
+[2025-03-01T02:13:19.190+0000] {standard_task_runner.py:105} INFO - Job 103: Subtask generate_orders_data
+[2025-03-01T02:13:19.233+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_postgres_1.generate_orders_data manual__2025-03-01T02:13:13.157161+00:00 [running]> on host e6b43e607126
+[2025-03-01T02:13:19.318+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='kucikm23@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_postgres_1' AIRFLOW_CTX_TASK_ID='generate_orders_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-01T02:13:13.157161+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-01T02:13:13.157161+00:00'
+[2025-03-01T02:13:19.319+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-03-01T02:13:19.320+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-03-01T02:13:19.320+0000] {logging_mixin.py:190} INFO - Current task name:generate_orders_data state:running start_date:2025-03-01 02:13:19.156668+00:00
+[2025-03-01T02:13:19.320+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 and current dag run status:running
+[2025-03-01T02:13:19.321+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-01T02:13:19.345+0000] {logging_mixin.py:190} INFO -                                order_id        customer_email  ...  amount  currency
+0  ea9c251d-4f4c-4600-a374-3300d96f6c84  user2512@example.com  ...  480.95       XPF
+
+[1 rows x 5 columns]
+[2025-03-01T02:13:19.346+0000] {python.py:240} INFO - Done. Returned value was:                                order_id        customer_email  ...  amount  currency
+0  ea9c251d-4f4c-4600-a374-3300d96f6c84  user2512@example.com  ...  480.95       XPF
+
+[1 rows x 5 columns]
+[2025-03-01T02:13:19.389+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-01T02:13:19.389+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=dag_postgres_1, task_id=generate_orders_data, run_id=manual__2025-03-01T02:13:13.157161+00:00, execution_date=20250301T021313, start_date=20250301T021319, end_date=20250301T021319
+[2025-03-01T02:13:19.416+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-03-01T02:13:19.417+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-03-01T02:13:19.417+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 queued_at:2025-03-01 02:13:13.165236+00:00
+[2025-03-01T02:13:19.417+0000] {logging_mixin.py:190} INFO - Task hostname:e6b43e607126 operator:PythonOperator
+[2025-03-01T02:13:19.445+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-01T02:13:19.464+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-01T02:13:19.470+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

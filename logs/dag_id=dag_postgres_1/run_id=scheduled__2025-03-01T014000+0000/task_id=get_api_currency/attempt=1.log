@@ -1,0 +1,54 @@
+[2025-03-01T01:58:32.827+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-01T01:58:32.847+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_postgres_1.get_api_currency scheduled__2025-03-01T01:40:00+00:00 [queued]>
+[2025-03-01T01:58:32.856+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_postgres_1.get_api_currency scheduled__2025-03-01T01:40:00+00:00 [queued]>
+[2025-03-01T01:58:32.856+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-01T01:58:32.871+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): get_api_currency> on 2025-03-01 01:40:00+00:00
+[2025-03-01T01:58:32.881+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=52004) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-03-01T01:58:32.881+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_postgres_1', 'get_api_currency', 'scheduled__2025-03-01T01:40:00+00:00', '--job-id', '58', '--raw', '--subdir', 'DAGS_FOLDER/dag_generate_table_info.py', '--cfg-path', '/tmp/tmp6qduhbet']
+[2025-03-01T01:58:32.882+0000] {standard_task_runner.py:72} INFO - Started process 52010 to run task
+[2025-03-01T01:58:32.883+0000] {standard_task_runner.py:105} INFO - Job 58: Subtask get_api_currency
+[2025-03-01T01:58:32.923+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_postgres_1.get_api_currency scheduled__2025-03-01T01:40:00+00:00 [running]> on host e6b43e607126
+[2025-03-01T01:58:33.000+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='kucikm23@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_postgres_1' AIRFLOW_CTX_TASK_ID='get_api_currency' AIRFLOW_CTX_EXECUTION_DATE='2025-03-01T01:40:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-01T01:40:00+00:00'
+[2025-03-01T01:58:33.002+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-03-01T01:58:33.002+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-03-01T01:58:33.002+0000] {logging_mixin.py:190} INFO - Current task name:get_api_currency state:running start_date:2025-03-01 01:58:32.847763+00:00
+[2025-03-01T01:58:33.003+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 and current dag run status:running
+[2025-03-01T01:58:33.003+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-01T01:58:33.579+0000] {logging_mixin.py:190} INFO - {{ ds }}
+[2025-03-01T01:58:33.580+0000] {python.py:240} INFO - Done. Returned value was: ['AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 'BAM', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', 'BSD', 'BTC', 'BTN', 'BWP', 'BYN', 'BZD', 'CAD', 'CDF', 'CHF', 'CLF', 'CLP', 'CNH', 'CNY', 'COP', 'CRC', 'CUC', 'CUP', 'CVE', 'CZK', 'DJF', 'DKK', 'DOP', 'DZD', 'EGP', 'ERN', 'ETB', 'EUR', 'FJD', 'FKP', 'GBP', 'GEL', 'GGP', 'GHS', 'GIP', 'GMD', 'GNF', 'GTQ', 'GYD', 'HKD', 'HNL', 'HRK', 'HTG', 'HUF', 'IDR', 'ILS', 'IMP', 'INR', 'IQD', 'IRR', 'ISK', 'JEP', 'JMD', 'JOD', 'JPY', 'KES', 'KGS', 'KHR', 'KMF', 'KPW', 'KRW', 'KWD', 'KYD', 'KZT', 'LAK', 'LBP', 'LKR', 'LRD', 'LSL', 'LYD', 'MAD', 'MDL', 'MGA', 'MKD', 'MMK', 'MNT', 'MOP', 'MRU', 'MUR', 'MVR', 'MWK', 'MXN', 'MYR', 'MZN', 'NAD', 'NGN', 'NIO', 'NOK', 'NPR', 'NZD', 'OMR', 'PAB', 'PEN', 'PGK', 'PHP', 'PKR', 'PLN', 'PYG', 'QAR', 'RON', 'RSD', 'RUB', 'RWF', 'SAR', 'SBD', 'SCR', 'SDG', 'SEK', 'SGD', 'SHP', 'SLL', 'SOS', 'SRD', 'SSP', 'STD', 'STN', 'SVC', 'SYP', 'SZL', 'THB', 'TJS', 'TMT', 'TND', 'TOP', 'TRY', 'TTD', 'TWD', 'TZS', 'UAH', 'UGX', 'USD', 'UYU', 'UZS', 'VEF', 'VES', 'VND', 'VUV', 'WST', 'XAF', 'XAG', 'XAU', 'XCD', 'XDR', 'XOF', 'XPD', 'XPF', 'XPT', 'YER', 'ZAR', 'ZMW', 'ZWL']
+[2025-03-01T01:58:33.601+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-01T01:58:33.602+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=dag_postgres_1, task_id=get_api_currency, run_id=scheduled__2025-03-01T01:40:00+00:00, execution_date=20250301T014000, start_date=20250301T015832, end_date=20250301T015833
+[2025-03-01T01:58:33.624+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-03-01T01:58:33.625+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-03-01T01:58:33.625+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 queued_at:2025-03-01 01:58:29.688825+00:00
+[2025-03-01T01:58:33.625+0000] {logging_mixin.py:190} INFO - Task hostname:e6b43e607126 operator:PythonOperator
+[2025-03-01T01:58:33.659+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-01T01:58:33.684+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-01T01:58:33.688+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-03-01T01:59:13.849+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-01T01:59:13.867+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_postgres_1.get_api_currency scheduled__2025-03-01T01:40:00+00:00 [queued]>
+[2025-03-01T01:59:13.875+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_postgres_1.get_api_currency scheduled__2025-03-01T01:40:00+00:00 [queued]>
+[2025-03-01T01:59:13.876+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-01T01:59:13.891+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): get_api_currency> on 2025-03-01 01:40:00+00:00
+[2025-03-01T01:59:13.901+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=52548) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-03-01T01:59:13.901+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'dag_postgres_1', 'get_api_currency', 'scheduled__2025-03-01T01:40:00+00:00', '--job-id', '62', '--raw', '--subdir', 'DAGS_FOLDER/dag_generate_table_info.py', '--cfg-path', '/tmp/tmp8fbgach5']
+[2025-03-01T01:59:13.902+0000] {standard_task_runner.py:72} INFO - Started process 52564 to run task
+[2025-03-01T01:59:13.902+0000] {standard_task_runner.py:105} INFO - Job 62: Subtask get_api_currency
+[2025-03-01T01:59:13.943+0000] {task_command.py:467} INFO - Running <TaskInstance: dag_postgres_1.get_api_currency scheduled__2025-03-01T01:40:00+00:00 [running]> on host e6b43e607126
+[2025-03-01T01:59:14.020+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='kucikm23@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_postgres_1' AIRFLOW_CTX_TASK_ID='get_api_currency' AIRFLOW_CTX_EXECUTION_DATE='2025-03-01T01:40:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-01T01:40:00+00:00'
+[2025-03-01T01:59:14.021+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-03-01T01:59:14.021+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-03-01T01:59:14.022+0000] {logging_mixin.py:190} INFO - Current task name:get_api_currency state:running start_date:2025-03-01 01:59:13.868120+00:00
+[2025-03-01T01:59:14.022+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 and current dag run status:running
+[2025-03-01T01:59:14.022+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-01T01:59:14.551+0000] {logging_mixin.py:190} INFO - {{ ds }}
+[2025-03-01T01:59:14.552+0000] {python.py:240} INFO - Done. Returned value was: ['AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 'BAM', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', 'BSD', 'BTC', 'BTN', 'BWP', 'BYN', 'BZD', 'CAD', 'CDF', 'CHF', 'CLF', 'CLP', 'CNH', 'CNY', 'COP', 'CRC', 'CUC', 'CUP', 'CVE', 'CZK', 'DJF', 'DKK', 'DOP', 'DZD', 'EGP', 'ERN', 'ETB', 'EUR', 'FJD', 'FKP', 'GBP', 'GEL', 'GGP', 'GHS', 'GIP', 'GMD', 'GNF', 'GTQ', 'GYD', 'HKD', 'HNL', 'HRK', 'HTG', 'HUF', 'IDR', 'ILS', 'IMP', 'INR', 'IQD', 'IRR', 'ISK', 'JEP', 'JMD', 'JOD', 'JPY', 'KES', 'KGS', 'KHR', 'KMF', 'KPW', 'KRW', 'KWD', 'KYD', 'KZT', 'LAK', 'LBP', 'LKR', 'LRD', 'LSL', 'LYD', 'MAD', 'MDL', 'MGA', 'MKD', 'MMK', 'MNT', 'MOP', 'MRU', 'MUR', 'MVR', 'MWK', 'MXN', 'MYR', 'MZN', 'NAD', 'NGN', 'NIO', 'NOK', 'NPR', 'NZD', 'OMR', 'PAB', 'PEN', 'PGK', 'PHP', 'PKR', 'PLN', 'PYG', 'QAR', 'RON', 'RSD', 'RUB', 'RWF', 'SAR', 'SBD', 'SCR', 'SDG', 'SEK', 'SGD', 'SHP', 'SLL', 'SOS', 'SRD', 'SSP', 'STD', 'STN', 'SVC', 'SYP', 'SZL', 'THB', 'TJS', 'TMT', 'TND', 'TOP', 'TRY', 'TTD', 'TWD', 'TZS', 'UAH', 'UGX', 'USD', 'UYU', 'UZS', 'VEF', 'VES', 'VND', 'VUV', 'WST', 'XAF', 'XAG', 'XAU', 'XCD', 'XDR', 'XOF', 'XPD', 'XPF', 'XPT', 'YER', 'ZAR', 'ZMW', 'ZWL']
+[2025-03-01T01:59:14.575+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-01T01:59:14.575+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=dag_postgres_1, task_id=get_api_currency, run_id=scheduled__2025-03-01T01:40:00+00:00, execution_date=20250301T014000, start_date=20250301T015913, end_date=20250301T015914
+[2025-03-01T01:59:14.602+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-03-01T01:59:14.602+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-03-01T01:59:14.603+0000] {logging_mixin.py:190} INFO - Dag name:dag_postgres_1 queued_at:2025-03-01 01:59:11.056301+00:00
+[2025-03-01T01:59:14.603+0000] {logging_mixin.py:190} INFO - Task hostname:e6b43e607126 operator:PythonOperator
+[2025-03-01T01:59:14.637+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-01T01:59:14.662+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-01T01:59:14.668+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

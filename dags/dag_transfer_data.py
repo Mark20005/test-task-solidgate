@@ -30,7 +30,7 @@ with DAG (
     default_args=default_args,
     schedule_interval='@hourly',
     catchup=False,
-    start_date=datetime.now(),
+    start_date=datetime(2025, 3, 1),
     description="Transfer data to Postgres-2 database"
 ) as dag:
 
@@ -44,7 +44,7 @@ with DAG (
             return response.json()["rates"]
         else:
             logging.error("Something went wrong while retrieving currencies rates")
-            return None
+            raise Exception
 
     def process_data(**kwargs):
         hook_postgres_1 = PostgresHook(postgres_conn_id='postgres_conn_1')

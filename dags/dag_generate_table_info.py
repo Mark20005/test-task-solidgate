@@ -29,7 +29,7 @@ with DAG(
         description='Create and populate orders table in Postgres-1',
         schedule_interval="*/10 * * * *",
         catchup=False,
-        start_date=datetime.now(),
+        start_date=datetime(2025, 3, 1),
 ) as dag:
 
     dag.doc_md = """ This DAG performs creating and generating data for orders table in Postgres-1 DB"""

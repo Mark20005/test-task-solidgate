@@ -27,10 +27,11 @@ with DAG(
         dag_id='dag_generate_table_info',
         default_args=default_args,
         description='Create and populate orders table in Postgres-1',
-        schedule_interval="*/50 * * * *",
+        schedule_interval="*/10 * * * *",
         catchup=False,
         start_date=datetime.now(),
 ) as dag:
+
     dag.doc_md = """ This DAG performs creating and generating data for orders table in Postgres-1 DB"""
 
     def get_currency_list():

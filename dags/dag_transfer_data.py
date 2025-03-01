@@ -46,7 +46,7 @@ with DAG (
             return None
 
     def process_data(**kwargs):
-        df = pd.DataFrame(columns=['order_id', 'customer_email', 'order_date', 'amount', 'currency_eur'])
+        df = pd.DataFrame(columns=['order_id', 'customer_email', 'order_date', 'amount', 'currency_usd'])
         hook_postgres_1 = PostgresHook(postgres_conn_id='postgres_conn_1')
         hook_postgres_2 = PostgresHook(postgres_conn_id='postgres_conn_2')
 
@@ -65,10 +65,8 @@ with DAG (
         logging.info(f"Converted data successfully inserted to orders_usd table!")
 
 
-
-
     create_orders_eur_table_task = PostgresOperator(
-        task_id='create_orders_eur_table',
+        task_id='create_orders_usd_table',
         postgres_conn_id='postgres_conn_2',
         sql="""CREATE TABLE IF NOT EXISTS orders_usd (
                     order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

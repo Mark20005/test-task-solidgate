@@ -48,7 +48,6 @@ with DAG(
         two_weeks_ago = current_date - timedelta(weeks=3)
         df = pd.DataFrame(columns=['order_id', 'customer_email', 'order_date', 'amount', 'currency'])
 
-        # Генерація даних та додавання їх до DataFrame
         for _ in range(20000):
             order_id = str(uuid.uuid4())
             customer_email = f'user{random.randint(1, 10000)}@example.com'
@@ -64,7 +63,7 @@ with DAG(
 
 
     def insert_orders_data(**kwargs):
-        hook = PostgresHook(postgres_conn_id='postgres_conn')
+        hook = PostgresHook(postgres_conn_id='postgres_conn_1')
         df: pd.DataFrame = kwargs['ti'].xcom_pull(task_ids='generate_orders_data')
 
         df = df[(df['order_date'] >= current_date - timedelta(days=7)) & (df['order_date'] <= current_date)]
@@ -73,11 +72,9 @@ with DAG(
         df.to_sql('orders', con=hook.get_sqlalchemy_engine(), if_exists='append', index=False)
 
 
-
-
     create_table_task = PostgresOperator(
         task_id='create_table_orders',
-        postgres_conn_id='postgres_conn',
+        postgres_conn_id='postgres_conn_1',
         sql="""CREATE TABLE IF NOT EXISTS orders (
                 order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
                 customer_email VARCHAR(255) NOT NULL,
